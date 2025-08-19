@@ -17,6 +17,9 @@
   "settings": { "react": { "version": "detect" } },
   // rules 는 필요한 경우 추가
   "rules": {
+    "no-unused-vars": "off",
+    // "react/prop-types": "warn", // 기본값은 "error"
+    "react/prop-types": "off", // 기본값은 "error"
     "react/react-in-jsx-scope": "off",
     "react-refresh/only-export-components": [
       "warn",

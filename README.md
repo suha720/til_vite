@@ -1,294 +1,300 @@
-# 환경설정
+# useState 상태
 
-## 1. ESLint 및 Prettier설정
+## 폴더 및 파일 구조
 
-- ESLint : 가장 안정적인 버전 8.x
-- Prettier: 가장 안정적인 버전 3.x
+- /src/components 폴더 생성
+- /src/components/todos 폴더 생성
+- /src/components/todos/TodoWrite.jsx 파일 생성
 
-```bash
-npm i -D eslint@^8 \
-  eslint-plugin-react@^7 \
-  eslint-plugin-react-hooks@^4 \
-  eslint-plugin-react-refresh@^0 \
-  prettier@^3 \
-  eslint-config-prettier@^9
-```
+```jsx
+import { useState } from "react";
 
-- ESLint 9.x 버전에서 활용되는 패키지 삭제
-
-```bash
-npm rm @eslint/js globals
-```
-
-## `.eslintrc.json` 생성
-
-- `eslint.config.js` 파일은 반드시 제거
-
-```json
-{
-  "root": true,
-  "env": { "browser": true, "es2022": true },
-  "ignorePatterns": ["dist/", "node_modules/"],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "ecmaFeatures": { "jsx": true }
-  },
-  "plugins": ["react", "react-hooks", "react-refresh"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  "settings": { "react": { "version": "detect" } },
-  //   rules 는 필요한 경우 추가
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "react-refresh/only-export-components": [
-      "warn",
-      { "allowConstantExport": true }
-    ]
-  }
-}
-```
-
-## `.prettierrc` 파일 생성
-
-```
-{
-  "singleQuote": false,
-  "semi": true,
-  "useTabs": false,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 80,
-  "arrowParens": "avoid",
-  "endOfLine": "auto"
-}
-```
-
-- `.prettierignore` (선택)
-
-```
-node_modules
-dist
-.eslintcache
-```
-
-## VS Code 설정
-
-- VS Code > 설정 > setting.json 의 내용 수정
-
-- 환경설정에서 다음 코드를 추가하면 `React Hook` 이 없다면 없다고 경고함
-
-```json
-  "eslint.useFlatConfig": false
-```
-
-- <img width="1178" height="748" alt="Image" src="https://github.com/user-attachments/assets/eb718625-03a0-4290-8f60-dfab75a00359" />
-
-- `.vscode` 폴더생성
-- `settings.json` 파일 생성
-
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ]
-}
-```
-
-## 참고용 VS Code 설정
-
-```json
-{
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Night Owl",
-  "editor.mouseWheelZoom": true,
-  "files.autoSave": "afterDelay",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
-
-  "postcssSorting.config": {
-    "properties-order": [
-      /* Layout */
-      "display",
-      "grid",
-      "grid-column-gap",
-      "grid-row-gap",
-      "grid-auto-flow",
-      "grid-auto-rows",
-      "grid-auto-columns",
-      "justify-items",
-      "align-content",
-      "place-items",
-      "gap",
-      "align-items",
-      "justify-content",
-      "flex-wrap",
-      "flex-basis",
-      "flex-grow",
-      "flex-shrink",
-      "flex",
-      "align-self",
-      "flex-direction",
-
-      /* Box */
-      "margin",
-      "margin-top",
-      "margin-right",
-      "margin-bottom",
-      "margin-left",
-      "padding",
-      "padding-top",
-      "padding-right",
-      "padding-bottom",
-      "padding-left",
-      "border",
-      "border-top",
-      "border-bottom",
-      "border-right",
-      "border-left",
-      "border-style",
-      "border-color",
-      "border-top-width",
-      "border-right-width",
-      "border-bottom-width",
-      "border-left-width",
-      "border-top-style",
-      "border-right-style",
-      "border-bottom-style",
-      "border-left-style",
-      "border-top-color",
-      "border-right-color",
-      "border-bottom-color",
-      "border-left-color",
-      "border-top-left-radius",
-      "border-top-right-radius",
-      "border-bottom-right-radius",
-      "border-bottom-left-radius",
-      "outline",
-      "outline-width",
-      "outline-style",
-      "outline-color",
-      "outline-offset",
-      "box-shadow",
-      "overflow",
-      "overflow-x",
-      "overflow-y",
-      "clip",
-      "position",
-      "top",
-      "right",
-      "bottom",
-      "left",
-      "z-index",
-      "width",
-      "min-width",
-      "max-width",
-      "height",
-      "min-height",
-      "max-height",
-      "float",
-      "clear",
-      "visibility",
-      "vertical-align",
-
-      /* Background */
-      "background",
-      "background-color",
-      "background-image",
-      "background-repeat",
-      "background-attachment",
-      "background-position",
-      "background-clip",
-      "background-origin",
-      "background-size",
-
-      /* Font */
-      "font-family",
-      "font-size",
-      "font-style",
-      "font-weight",
-      "line-height",
-      "color",
-      "text-align",
-      "text-decoration",
-      "text-transform",
-      "letter-spacing",
-      "text-shadow",
-      "white-space",
-      "word-spacing",
-      "word-break",
-      "word-wrap",
-      "text-indent",
-      "direction",
-      "unicode-bidi",
-      "hyphens",
-
-      /* Animation and Transition */
-      "animation",
-      "animation-name",
-      "animation-duration",
-      "animation-timing-function",
-      "animation-delay",
-      "animation-iteration-count",
-      "animation-direction",
-      "animation-fill-mode",
-      "animation-play-state",
-      "transition",
-      "transition-property",
-      "transition-duration",
-      "transition-timing-function",
-      "transition-delay",
-
-      /* Other */
-      "content",
-      "counter-reset",
-      "counter-increment",
-      "quotes",
-      "list-style",
-      "list-style-position",
-      "list-style-type",
-      "caption-side",
-      "empty-cells",
-      "table-layout",
-      "pointer-events",
-      "cursor",
-      "resize",
-      "overflow-wrap",
-      "scroll-snap-type",
-      "scroll-padding",
-      "scroll-padding-top",
-      "scroll-padding-right",
-      "scroll-padding-bottom",
-      "scroll-padding-left",
-      "scroll-behavior",
-      "scroll-snap-align",
-      "scroll-snap-margin",
-      "scroll-snap-stop",
-      "scrollbar-width",
-      "scrollbar-color"
-    ]
-  },
-  "liveSassCompile.settings.formats": [
-    {
-      "format": "expanded",
-      "extensionName": ".css",
-      "savePath": null,
-      "savePathReplacementPairs": null
+const TodoWrite = ({ handleTodoAdd }) => {
+  // js 자리
+  const [title, setTitle] = useState("");
+  const handleKeyDown = e => {
+    if (e.key === "Enter") {
+      handleSave();
     }
-  ],
-  "redhat.telemetry.enabled": true,
-  "eslint.useFlatConfig": false
+  };
+  const handleSave = () => {
+    if (title.trim()) {
+      //console.log("새로운 할일 추가");
+      const newTodo = {
+        id: Date.now().toString(),
+        title: title,
+        completed: false,
+      };
+      handleTodoAdd(newTodo);
+      setTitle("");
+    }
+  };
+  // jsx 자리
+  return (
+    <div>
+      <input
+        type="text"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button onClick={handleSave}>등록</button>
+    </div>
+  );
+};
+
+export default TodoWrite;
+```
+
+- /src/components/todos/TodoList.jsx 파일 생성
+
+```jsx
+import { useState } from "react";
+import TodoItem from "./TodoItem";
+
+const TodoList = ({
+  todos,
+
+  editId,
+  setEditId,
+
+  handleTodoEdit,
+  handleTodoDelete,
+  handleTodoToggle,
+}) => {
+  // js 자리
+  // 어느 id 를 편집 중인지 보관
+  // const [editId, setEditId] = useState(null);
+  // 현재 편집을 시작했는지
+  const onEdit = id => {
+    console.log("현재 편집 중인 ID : ", id);
+    setEditId(id);
+  };
+  // 현재 편집을 취소했는지
+  const onCancel = () => {
+    setEditId(null);
+  };
+  // 현재 편집을 완료하고 저장했는지
+  const onSaveEdit = (id, newTitle) => {
+    handleTodoEdit(id, newTitle);
+    setEditId(null);
+  };
+
+  // 누가 toggle 했는지 처리
+  const onToggle = id => {
+    handleTodoToggle(id);
+    if (editId === id) {
+      setEditId(null);
+    }
+  };
+
+  // 삭제 했을 때
+  const onDelete = id => {
+    handleTodoDelete(id);
+    if (editId === id) {
+      setEditId(null);
+    }
+  };
+
+  // jsx 자리
+  return (
+    <div>
+      <h2>할일 목록</h2>
+      <div>
+        <ul>
+          {todos.map(item => (
+            <TodoItem
+              key={item.id}
+              todo={item}
+              // 아래는 true 아니면 false 전달
+              isEdit={item.id === editId}
+              onEdit={onEdit}
+              onCancel={onCancel}
+              onSaveEdit={onSaveEdit}
+              onDelete={onDelete}
+              onToggle={onToggle}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default TodoList;
+```
+
+- /src/components/todos/TodoItem.jsx 파일 생성
+
+```jsx
+import { useEffect, useState } from "react";
+
+const TodoItem = ({
+  todo,
+  isEdit, //  true, false
+  onEdit,
+  onCancel,
+  onSaveEdit,
+  onDelete,
+  onToggle,
+}) => {
+  // js 자리
+  const [editTitle, setEditTitle] = useState(todo.title);
+
+  // isEdit 이 true 이면 계속 업데이트
+  // isEdit 이 true 이면 todo.title 을 계속 업데이트
+  useEffect(() => {
+    if (isEdit) {
+      setEditTitle(todo.title);
+    }
+  }, [isEdit, todo.title]);
+
+  const handleToggle = () => {
+    // console.log(todo.id, "번의 complted 가 변경됨");
+    onToggle(todo.id);
+  };
+  const handleEdit = () => {
+    onEdit(todo.id);
+  };
+  const handleDelete = () => {
+    // console.log(todo.id, "번이 삭제됨");
+    onDelete(todo.id);
+  };
+  const handleEditKeyDown = e => {
+    if (e.key === "Enter") {
+      handleEditSave();
+    }
+  };
+  const handleEditSave = () => {
+    if (editTitle.trim()) {
+      // 실제로 todos 의 목록에 업데이트 진행
+      //console.log(todo.id, "번이 업데이트됨", editTitle, "으로 변경필요");
+      onSaveEdit(todo.id, editTitle);
+    }
+  };
+  const handleEditCancel = () => {
+    // 취소했으므로 원본 데이터로 다시 복구
+    setEditTitle(todo.title);
+    onCancel();
+  };
+
+  const liStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    color: todo.completed ? "gray" : "red",
+  };
+  const titleStyle = {
+    textDecoration: todo.completed ? "line-through" : "none",
+  };
+
+  // jsx 자리
+  return (
+    <li style={liStyle}>
+      {isEdit ? (
+        <>
+          <input
+            type="text"
+            value={editTitle}
+            onChange={e => setEditTitle(e.target.value)}
+            onKeyDown={handleEditKeyDown}
+          />
+          <button onClick={handleEditSave}>저장</button>
+          <button onClick={handleEditCancel}>취소</button>
+        </>
+      ) : (
+        <>
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={handleToggle}
+          />
+          <span style={titleStyle}>{todo.title}</span>
+          <button onClick={handleEdit}>수정</button>
+          <button onClick={handleDelete}>삭제</button>
+        </>
+      )}
+    </li>
+  );
+};
+
+export default TodoItem;
+```
+
+- App.jsx
+
+```jsx
+import { useEffect, useState } from "react";
+import TodoList from "./components/todos/TodoList";
+import TodoWrite from "./components/todos/TodoWrite";
+
+// 더미 데이터
+const initialTodos = [
+  { id: "1", title: "할일 1", completed: false },
+  { id: "2", title: "할일 2", completed: true },
+  { id: "3", title: "할일 3", completed: true },
+  { id: "4", title: "할일 4", completed: false },
+  { id: "5", title: "할일 5", completed: true },
+];
+
+function App() {
+  // js 자리
+  // 1. 할일 목록 상태관리
+  const [todos, setTodos] = useState([]);
+  // 편집 중인 ID 를 관리함.
+  const [editId, setEditId] = useState(null);
+
+  const handleTodoAdd = newTodo => {
+    // prev 현재 최신 state 를 참조 업데이트
+    // setTodos( prev => [newTodo, ...prev]);
+
+    const arr = [newTodo, ...todos];
+    setTodos(arr);
+
+    // 편집중인 ID 비움
+    setEditId(null);
+  };
+  const handleTodoEdit = (id, title) => {
+    const arr = todos.map(item =>
+      item.id === id ? { ...item, title: title } : item,
+    );
+    setTodos(arr);
+  };
+  const handleTodoDelete = id => {
+    const arr = todos.filter(item => item.id !== id);
+    setTodos(arr);
+  };
+  const handleTodoToggle = id => {
+    const arr = todos.map(item =>
+      item.id === id ? { ...item, completed: !item.completed } : item,
+    );
+    setTodos(arr);
+  };
+
+  // 2. 실제로 데이터는 DB 에서 비동기로 옮
+  useEffect(() => {
+    // 비동기로 진행할 필요 있음.
+    setTodos(initialTodos);
+  }, []);
+
+  // jsx 자리
+  return (
+    <div>
+      <h1>할일 앱 서비스</h1>
+      <div>
+        <TodoWrite handleTodoAdd={handleTodoAdd} />
+        <TodoList
+          todos={todos}
+          editId={editId}
+          setEditId={setEditId}
+          handleTodoEdit={handleTodoEdit}
+          handleTodoDelete={handleTodoDelete}
+          handleTodoToggle={handleTodoToggle}
+        />
+      </div>
+    </div>
+  );
 }
+
+export default App;
 ```
