@@ -1,30 +1,30 @@
 import { useState } from "react";
+import { useTodos } from "../../contexts/todos/useTodos";
 
-const TodoWrite = ({ handleTodoAdd }) => {
-  // js
+const TodoWrite = ({ onEndEdit }) => {
+  // js 자리
+  const { addTodo } = useTodos();
+
   const [title, setTitle] = useState("");
   const handleKeyDown = e => {
     if (e.key === "Enter") {
-      if (title.trim()) {
-        handleSave();
-      }
+      handleSave();
     }
   };
-
   const handleSave = () => {
     if (title.trim()) {
-      console.log("새로운 것기능 테스트");
+      //console.log("새로운 할일 추가");
       const newTodo = {
         id: Date.now().toString(),
         title: title,
         completed: false,
       };
-      handleTodoAdd(newTodo);
+      addTodo(newTodo);
       setTitle("");
+      onEndEdit();
     }
   };
-
-  // jsx
+  // jsx 자리
   return (
     <div>
       <input
