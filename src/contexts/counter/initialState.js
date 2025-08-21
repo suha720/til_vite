@@ -1,4 +1,3 @@
-// 1. 초기 상태값
-export const initalState = {
+export const initialState = {
   count: 0,
 };

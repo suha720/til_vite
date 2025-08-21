@@ -1,5 +1,4 @@
 import { ConunterProvider } from "./contexts/counter/context";
-import { CounterProvider } from "./contexts/counter/CounterContext";
 import { useCounter } from "./contexts/counter/useCounter";
 import { useTheme } from "./contexts/theme/ThemeContext";
 
@@ -9,20 +8,20 @@ const Popup = () => {
 };
 
 const CounterComponent = () => {
-  const { v, increment } = useCounter();
+  const { v, add } = useCounter();
 
   return (
     <div>
-      카운터 : {v} <button onClick={increment}>증가</button>
+      {v}카운터지요 <button onClick={() => add(5)}>5 증가</button>
     </div>
   );
 };
 
 function App() {
   return (
-    <CounterProvider>
+    <ConunterProvider>
       <CounterComponent />
-    </CounterProvider>
+    </ConunterProvider>
   );
 }
 

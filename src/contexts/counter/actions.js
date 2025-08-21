@@ -1,6 +1,6 @@
 import { ACTIONS } from "./constants";
 
-export const incrementAction = () => ({ type: ACTIONS.INCREMENT });
-export const decrementAction = () => ({ type: ACTIONS.DECREMENT });
+export const incrmentAction = () => ({ type: ACTIONS.INCREMENT });
+export const decrmentAction = () => ({ type: ACTIONS.DECREMENT });
 export const resetAction = () => ({ type: ACTIONS.RESET });
-export const addnumAction = num => ({ type: ACTIONS.ADDNUM, payload: num });
+export const addNumAction = a => ({ type: ACTIONS.ADDNUM, payload: a });
