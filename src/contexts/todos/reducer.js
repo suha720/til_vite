@@ -29,6 +29,7 @@ export function reducer(state, action) {
             : item,
         ),
       };
+      
     default:
       return state;
   }

@@ -3,4 +3,5 @@ export const ACTIONS = {
   DELETE: "DELETE",
   TOGGLE: "TOGGLE",
   EDIT: "EDIT",
+  FIND: "FIND",
 };

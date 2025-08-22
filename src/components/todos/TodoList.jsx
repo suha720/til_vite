@@ -2,9 +2,11 @@ import { list } from "postcss";
 import { useTodos } from "../../contexts/todos/useTodos";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ editId, onStartEdit, onEndEdit }) => {
+// const TodoList = ({ editId, onStartEdit, onEndEdit })
+const TodoList = () => {
   // js 자리
   const { todos } = useTodos();
+  console.log("todoso : ", todos);
 
   // jsx 자리
   return (
@@ -22,9 +24,9 @@ const TodoList = ({ editId, onStartEdit, onEndEdit }) => {
               key={item.id}
               todo={item}
               // 하나만 편집이 가능하도록 구성
-              editId={editId}
-              onStartEdit={onStartEdit}
-              onEndEdit={onEndEdit}
+              // editId={editId}
+              // onStartEdit={onStartEdit}
+              // onEndEdit={onEndEdit}
             />
           ))}
           {todos.length === 0 && (
